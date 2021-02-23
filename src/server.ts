@@ -1,6 +1,14 @@
-import express, { request, response } from 'express'
+import "reflect-metadata"
+import express from 'express'
+import "./database"
+import { router } from "./routes"
 
 const app = express()
+
+app.use(express.json())
+app.use(router)
+
+app.listen(3333, () => console.log("Server is running!"))
 
 /**
  *  GET    -> Busca
@@ -9,20 +17,6 @@ const app = express()
  *  DELETE -> Deletar
  *  PATCH  -> Alteração específica
  */ 
-
-
-  // http://localhost:3333/users
+  // http://localhost:3333/
   // 1 parametro -> Rota(recurso API)
   // 2 parametro -> request, response
-
-app.get("/", (request, response) => {
-    return response.json({messege: "Hello World - NLW04"})
-})
-
-app.post("/", (request, response) => {
-    //Recebeu os dados para salvar
-    return response.json({message: "Os dados foram salvos com sucesso!"})
-})
-
-
-app.listen(3333, () => console.log("Server is running!"))
